@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DatabaseService } from '../oop/DatabaseService';
 import { UniversityLogo } from './UniversityLogo';
-import { X, Lock, Mail, User as UserIcon, Phone, ShieldCheck, Sparkles, AlertCircle } from 'lucide-react';
+import { X, Lock, Mail, User as UserIcon, Phone, ShieldCheck, AlertCircle } from 'lucide-react';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -105,21 +105,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       onClose();
     } catch (err: any) {
       setError(err.message || 'Registration failed.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Quick Switcher Helper
-  const quickLoginAs = async (quickEmail: string, quickPass: string) => {
-    setError('');
-    setIsLoading(true);
-    try {
-      await db.login(quickEmail, quickPass);
-      onLoginSuccess();
-      onClose();
-    } catch (err: any) {
-      setError(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -390,42 +375,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               </button>
             </form>
           )}
-
-          {/* Quick Demo Switcher Strip for University Project Evaluation */}
-          <div className="mt-6 pt-4 border-t border-slate-100">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5 text-[#16325C]" />
-                Demo 1-Click Evaluation Accounts
-              </span>
-            </div>
-            <div className="grid grid-cols-3 gap-1.5 text-[11px]">
-              <button
-                type="button"
-                onClick={() => quickLoginAs('sarah.ahmed@itech.edu.pk', 'itech2026')}
-                className="p-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 text-center font-medium"
-              >
-                <span className="block font-bold text-slate-900 truncate">Sarah Ahmed</span>
-                <span className="text-[9px] text-slate-500">Student (2 posts)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => quickLoginAs('hamza.ali@itech.edu.pk', 'itech2026')}
-                className="p-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 text-center font-medium"
-              >
-                <span className="block font-bold text-slate-900 truncate">Hamza Ali</span>
-                <span className="text-[9px] text-slate-500">Student (2 posts)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => quickLoginAs('admin@itech.edu.pk', 'admin2026')}
-                className="p-1.5 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[#A82024] text-center font-medium"
-              >
-                <span className="block font-bold truncate">Dr. Tariq</span>
-                <span className="text-[9px]">Admin Portal</span>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
