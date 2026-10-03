@@ -1,0 +1,6 @@
+{
+  "name": "iTECH Lost & Found Portal",
+  "description": "Official Lost and Found Management System for iTECH (International Institute of Technology, Culture & Health Sciences). Built with robust OOP architecture, role-based access, and student-first item recovery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch ? window.fetch.bind(window) : null;
+          var _fetch = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _fetch;
+            },
+            set: function(val) {
+              _fetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            var proto = Object.getPrototypeOf(window);
+            var protoFetch = proto && proto.fetch ? proto.fetch.bind(window) : null;
+            var _pFetch = protoFetch;
+            if (proto) {
+              Object.defineProperty(proto, 'fetch', {
+                get: function() {
+                  return _pFetch;
+                },
+                set: function(val) {
+                  _pFetch = val;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (err) {}
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iTECH Lost & Found Portal | International Institute of Technology, Culture & Health Sciences</title>
+    <meta name="description" content="Official Lost and Found Management System for iTECH (International Institute of Technology, Culture & Health Sciences). Helping students reconnect with their lost belongings." />
+    <meta property="og:title" content="iTECH Lost & Found Portal" />
+    <meta property="og:description" content="Helping students reconnect with their lost belongings at iTECH." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased font-sans">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
